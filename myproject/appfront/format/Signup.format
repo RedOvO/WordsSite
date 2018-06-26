@@ -1,0 +1,13 @@
+// 注册
+ajax: "/api/signup"
+ajax.method: "post"
+ajax.request{
+    email: 'user001@123.com',
+    name: 'user',
+    password: '123345'
+}
+ajax.response:{
+    code: "200",
+    message: "success",
+    data: true
+}
