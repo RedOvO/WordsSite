@@ -1,3 +1,8 @@
+
+![Version](https://img.shields.io/badge/version-1.2.0-brightgreen.svg)
+
+
+
 # recite-words-frontend
 
 A recite words website use react.

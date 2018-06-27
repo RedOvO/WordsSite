@@ -216,6 +216,7 @@ def cet4_next(request):
     nowuser.account_cet4 = present_no + 1
     if nowuser.account_cet4 > 5520:
         nowuser.account_cet4 = 1
+        nowuser.account_cet4_today = 1
     nowuser.save()
 
     # 获取单词
@@ -259,6 +260,7 @@ def cet6_next(request):
     nowuser.account_cet6 = present_no + 1
     if nowuser.account_cet6 > 1540:
         nowuser.account_cet6 = 1
+        nowuser.account_cet6_today = 1
     nowuser.save()
 
     # 获取单词
@@ -403,6 +405,7 @@ def cet6_list(request):
 @csrf_exempt
 def cet4_review_test(request):
     print('cet4 review/test')
+    print(request.POST)
     dic = list(request.POST)[0]
     msg = json.loads(dic)
     mail = msg.get('user')
@@ -411,17 +414,24 @@ def cet4_review_test(request):
     present_user = User.objects.get(username=mail)
     nowuser = Account.objects.get(id=present_user.id)
 
+    wordslist = []
     if nowuser.account_cet4 < 101:
-        words = Cet4.objects.all()[:nowuser.account_cet4] #用户学习过的单词少于100个，返回所有学习过的单词
+        words = Cet4.objects.all()[:nowuser.account_cet4]  # 用户学习过的单词少于100个，返回所有学习过的单词
+        print(words)
+        for item in words:
+            word = Cet4.objects.get(cet4_num=item.cet4_num)
+            wordslist = wordslist + [{'word': word.cet4_word, 'desc': word.cet4_describe, 'catalog': 1}]
     else:
         rand_word = random.sample(range(1, nowuser.account_cet4), 100)
-        words = Cet4.objects.filter(cet4_num=rand_word)   #多于100个，随机返回100个
+        for id in rand_word:
+            word = Cet4.objects.get(cet4_num=id)  # 多于100个，随机返回100个
+            wordslist = wordslist + [{'word': word.cet4_word, 'desc': word.cet4_describe, 'catalog': 1}]
 
     #构建要返回的100个单词列表
-    wordslist = []
-    for item in words:
-        word = Cet4.objects.get(cet4_num=item.cet4_num)
-        wordslist = wordslist + [{'word': word.cet4_word, 'desc': word.cet4_describe, 'catalog': 0}]
+    #wordslist = []
+    #for item in words:
+    #    word = Cet4.objects.get(cet4_num=item.cet4_num)
+    #    wordslist = wordslist + [{'word': word.cet4_word, 'desc': word.cet4_describe, 'catalog': 0}]
 
     resp = {
         'code': '200',
@@ -436,6 +446,7 @@ def cet4_review_test(request):
 @csrf_exempt
 def cet6_review_test(request):
     print('cet6 review/test')
+    print(request.POST)
     dic = list(request.POST)[0]
     msg = json.loads(dic)
     mail = msg.get('user')
@@ -444,17 +455,26 @@ def cet6_review_test(request):
     present_user = User.objects.get(username=mail)
     nowuser = Account.objects.get(id=present_user.id)
 
+    wordslist = []
     if nowuser.account_cet6 < 101:
         words = Cet6.objects.all()[:nowuser.account_cet6] #用户学习过的单词少于100个，返回所有学习过的单词
+        print(words)
+        for item in words:
+            word = Cet6.objects.get(cet6_num=item.cet6_num)
+            wordslist = wordslist + [{'word': word.cet6_word, 'desc': word.cet6_describe, 'catalog': 1}]
     else:
         rand_word = random.sample(range(1, nowuser.account_cet6), 100)
-        words = Cet6.objects.filter(cet6_num=rand_word)   #多于100个，随机返回100个
+        for id in rand_word:
+            word = Cet6.objects.get(cet6_num=id)   #多于100个，随机返回100个
+            wordslist = wordslist + [{'word': word.cet6_word, 'desc': word.cet6_describe, 'catalog': 1}]
+
+
 
     #构建要返回的100个单词列表
-    wordslist = []
-    for item in words:
-        word = Cet6.objects.get(cet6_num=item.cet6_num)
-        wordslist = wordslist + [{'word': word.cet6_word, 'desc': word.cet6_describe, 'catalog': 1}]
+    # wordslist = []
+    # for item in words:
+    #     word = Cet6.objects.get(cet6_num=item.cet6_num)
+    #     wordslist = wordslist + [{'word': word.cet6_word, 'desc': word.cet6_describe, 'catalog': 1}]
 
     resp = {
         'code': '200',
