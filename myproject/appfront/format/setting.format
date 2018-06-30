@@ -1,7 +1,8 @@
 //用户设置背诵计划,设置要背的单词集
 ajax: "/api/setting/plan"
+ajax.method: "post"
 ajax.request{
-    user: "user001@163.com"
+    user: "3150102236@zju.edu.cn"
     counter: "100",
     setting: 0 //0为4+6级，1为4级，2为6级
 }

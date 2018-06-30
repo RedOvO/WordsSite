@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import {Input} from 'antd';
 import {Layout} from 'antd';
 import HeaderCustom from './components/UnloginHeader/UnloginHeader';
 import FooterCustom from './components/FooterCustom/FooterCustom';

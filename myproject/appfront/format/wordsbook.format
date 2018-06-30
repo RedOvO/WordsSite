@@ -1,28 +1,30 @@
 // 用户获取自定义四级单词列表
+ajax.method: "post"
 ajax: "/api/wordsbook/cet4_list"
 ajax.request{
-    user: 'user001'
+    user: '3150102236@zju.edu.cn'
 }
 ajax.response:{
-    "code": "200",
-    "message": "success",
+    code: "200",
+    message: "success",
     data:{
         words_list:[{
             word: 'Apple',
             desc: 'n. 苹果',
-            catalog: '1'
+            catalog: '0'
         },{
             word: 'Pear'
             desc: 'n. 梨'
-            catalog: '2'
+            catalog: '0'
         }, ...] //自定义的单词列表
     }
 }
 
 // 用户获取自定义六级单词列表
+ajax.method: "post"
 ajax: "/api/wordsbook/cet6_list"
 ajax.request{
-    user: 'user001@163.com'
+    user: '3150102236@zju.edu.cn'
 }
 ajax.response:{
     code: "200",
@@ -35,7 +37,7 @@ ajax.response:{
         },{
             word: 'Pear'
             desc: 'n. 梨'
-            catalog: '2'
+            catalog: '1'
         }, ...] //自定义的单词列表
     }
 }
@@ -44,7 +46,7 @@ ajax.response:{
 ajax: "/api/wordsbook/delete_custom"
 ajax.method: "post"
 ajax.request{
-    user: 'aaa@qqq.com'
+    user: '3150102236@zju.edu.cn'
     word: 'Apple'
     catalog: 0 //0为4级，1为6级
 }

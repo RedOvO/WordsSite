@@ -2,7 +2,7 @@
 ajax: "/api/logout"
 ajax.method: "post"
 ajax.request{
-    email: 'user001@123.com',
+    email: '3150102236@zju.edu.cn',
 }
 ajax.response:{
     code: "200",

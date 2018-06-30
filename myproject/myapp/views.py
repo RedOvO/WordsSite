@@ -72,7 +72,7 @@ def signup(request):
     #判断用户名是否已存在
     temp = User.objects.filter(username=mail)
     if temp:
-        resp = {'code': '1034', 'message': 'email exsits', 'data': 'false'}
+        resp = {'code': '1037', 'message': 'email exsits', 'data': 'false'}
     else:
         newuser = User.objects.create_user(username=mail, password=password)  # 存入User数据库中。
         Account.objects.create(account_user=newuser, account_nickname=nickname)  # 存入Account数据库中

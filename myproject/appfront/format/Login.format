@@ -2,8 +2,8 @@
 ajax: "/api/login"
 ajax.method: "post"
 ajax.request{
-    email: 'user001@123.com',
-    password: '123345'
+    email: '3150102236@zju.edu.cn',
+    password: '123456'
 }
 ajax.response:{
     code: "200",
